@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3249298220261344706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3249298220261344705}
+  - component: {fileID: 3249298220261344710}
+  m_Layer: 0
+  m_Name: Spell
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3249298220261344705
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3249298220261344706}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3249298220261344710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3249298220261344706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea20555370806274389689abb672329b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potentialSpells:
+  - zamboni
+  - discombobulate
+  - baconsandwich
+  - bmt
+  - bbc
+  - caboose
+  - miraculous
+  - wingardiumleviosa
+  - pikachu
+  - ska
+  - poltergeist
+  - corrida
+  - neopets
+  - colada
+  - acer
+  - meese
+  - chimkin
+  - grookey
+  - tara
+  - mikele
+  - bostco
+  - shibe
+  - froge
+  - fartnite
+  - compoter
+  - kungfupandathree
+  - sansundertale
+  - kerfuffle
+  - falafel
+  - skdjhcouawhunaw
+  - onebilliondollars
+  - thanos
+  - steve
+  - creeper
+  - quieres
+  - fourtwenty
+  - sixtynine
+  - subway
+  - hydroflask
+  - mcdonalds
+  - star
+  - rats
+  - damb
+  - rainbow
+  - achoo
+  - blessyou
+  - rgbkeyboard
+  - tylerone
+  - aaaaaaaaaaaaaaaa
+  - bananas
+  - propane
+  - animesucks
+  - shrekisdrek
+  - jennatools
+  - whosjoe
+  spellLetterPrefab: {fileID: 45220712465613508, guid: ec8aca57024770c47871e8d03f3a8041,
+    type: 3}
