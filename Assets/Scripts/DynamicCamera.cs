@@ -21,35 +21,21 @@ public class DynamicCamera : MonoBehaviour
         sceneCamera = Camera.main;
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
-        if (targets.Count == 0) return;
-        Move();
-        Zoom();
+        Vector3 direction = targets[0].position - targets[1].position;
+        Vector3 offset = direction.normalized * (direction.magnitude / 2f);
+
+        Vector3 newPos = targets[0].position - offset;
+        newPos.y = 8;
+
+        newPos += (5 * Vector3.Cross(direction, Vector3.up).normalized) + (0.5f * Vector3.Cross(direction, Vector3.up));
+        transform.LookAt(GetCenterPoint());
+
+        transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, smoothTime);
     }
 
-    void Move()
-    {
-        Vector3 centerPoint = GetCenterPoint();
-        Vector3 newPosition = centerPoint + offset;
-        transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
-    }
 
-    void Zoom()
-    {
-        float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance() / zoomLimiter);
-        sceneCamera.fieldOfView = Mathf.Lerp(sceneCamera.fieldOfView, newZoom, Time.deltaTime);
-    }
-
-    float GetGreatestDistance()
-    {
-        Bounds bounds = new Bounds(targets[0].position, Vector3.zero);
-        foreach (Transform trans in targets)
-        {
-            bounds.Encapsulate(trans.position);
-        }
-        return bounds.size.x;
-    }
 
     Vector3 GetCenterPoint()
     {

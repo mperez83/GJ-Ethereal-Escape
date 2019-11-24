@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManaGoo : MonoBehaviour
+public class Crystal : MonoBehaviour
 {
     Rigidbody rb;
 
@@ -17,6 +17,8 @@ public class ManaGoo : MonoBehaviour
         Vector3 force = new Vector3(xForce, yForce, zForce);
 
         rb.AddForce(force, ForceMode.Impulse);
+
+        rb.AddTorque(force, ForceMode.Impulse);
     }
 
     void Update()

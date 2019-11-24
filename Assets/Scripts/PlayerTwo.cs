@@ -10,21 +10,24 @@ public class PlayerTwo : MonoBehaviour
     public enum Mode {Typing, Moving};
     Mode mode = Mode.Typing;
 
+    public LayerMask collisionMask;
+
     //Typing stuff
-    Camera sceneCamera;
     public Canvas spellCanvas;
     public GameObject spellPrefab;
     Spell currentSpell;
     int spellsCast;
 
     //Moving stuff
+    public GameObject bootObject;
     Vector2 inputAxis;
     public float acceleration;
 
     Rigidbody rb;
-    
-    
-    
+    Camera sceneCamera;
+
+
+
     void Start()
     {
         sceneCamera = Camera.main;
@@ -35,9 +38,17 @@ public class PlayerTwo : MonoBehaviour
 
     void Update()
     {
-        //Make spells point at camera
+        //Make the worldspace camera point at the camera
         spellCanvas.transform.LookAt(sceneCamera.transform.position + (sceneCamera.transform.rotation * Vector3.back), sceneCamera.transform.rotation * Vector3.up);
         spellCanvas.transform.Rotate(0, 180, 0);
+
+        //Make the wizard hover some distance above the ground
+        Vector3 rayPos = new Vector3(transform.position.x, 0, transform.position.z);
+        RaycastHit hit;
+        if (Physics.Raycast(rayPos, Vector3.down, out hit, Mathf.Infinity, collisionMask))
+        {
+            transform.position = new Vector3(transform.position.x, hit.point.y + 0.75f, transform.position.z);
+        }
 
         switch (mode)
         {
@@ -45,6 +56,7 @@ public class PlayerTwo : MonoBehaviour
                 if (Input.GetButtonDown("P2_Action"))
                 {
                     currentSpell.gameObject.SetActive(false);
+                    bootObject.SetActive(true);
                     mode = Mode.Moving;
                 }
                 break;
@@ -55,6 +67,7 @@ public class PlayerTwo : MonoBehaviour
                 if (Input.GetButtonDown("P2_Action"))
                 {
                     currentSpell.gameObject.SetActive(true);
+                    bootObject.SetActive(false);
                     mode = Mode.Typing;
                 }
                 break;
@@ -70,7 +83,15 @@ public class PlayerTwo : MonoBehaviour
                 break;
 
             case Mode.Moving:
-                rb.AddForce(new Vector3(inputAxis.x, 0, inputAxis.y) * acceleration * Time.deltaTime);
+                Vector3 camF = sceneCamera.transform.forward;
+                Vector3 camR = sceneCamera.transform.right;
+                camF.y = 0;
+                camR.y = 0;
+                camF = camF.normalized;
+                camR = camR.normalized;
+
+                Vector3 direction = (camF * inputAxis.y) + (camR * inputAxis.x);
+                rb.AddForce(direction * acceleration * Time.deltaTime);
                 break;
         }
     }

@@ -79,6 +79,7 @@ public class PlayerOne : MonoBehaviour
             Vector3 dashForce = new Vector3(direction.x, 0, direction.z) * dashPower;
 
             rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            
             rb.AddForce(dashForce, ForceMode.Impulse);
         }
 
@@ -90,7 +91,7 @@ public class PlayerOne : MonoBehaviour
         shieldObject.transform.localScale = shieldSize;
 
         Color textureColor = shieldRenderer.material.color;
-        textureColor.a = 0.75f * (1 - ((shieldMaxPower - shieldPower) / shieldMaxPower));
+        textureColor.a = 0.5f * (1 - ((shieldMaxPower - shieldPower) / shieldMaxPower));
         shieldRenderer.material.color = textureColor;
 
         shieldBarImage.fillAmount = 1 - ((shieldMaxPower - shieldPower) / shieldMaxPower);
