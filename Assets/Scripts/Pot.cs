@@ -37,6 +37,8 @@ public class Pot : MonoBehaviour
 
         if (health <= 0)
         {
+            for (int i = 0; i < 3; i++)
+                Instantiate(manaGooPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

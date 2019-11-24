@@ -28,7 +28,8 @@ public class ManaGoo : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            print("yum");
+            MatchHandler.instance.CollectManaGoo(1);
+            Destroy(gameObject);
         }
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 969017873959493380}
   - component: {fileID: 969017873959493381}
   - component: {fileID: 969017873959493376}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mana Goo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

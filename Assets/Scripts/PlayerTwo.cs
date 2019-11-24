@@ -44,6 +44,7 @@ public class PlayerTwo : MonoBehaviour
             case Mode.Typing:
                 if (Input.GetButtonDown("P2_Action"))
                 {
+                    currentSpell.gameObject.SetActive(false);
                     mode = Mode.Moving;
                 }
                 break;
@@ -53,6 +54,7 @@ public class PlayerTwo : MonoBehaviour
 
                 if (Input.GetButtonDown("P2_Action"))
                 {
+                    currentSpell.gameObject.SetActive(true);
                     mode = Mode.Typing;
                 }
                 break;
