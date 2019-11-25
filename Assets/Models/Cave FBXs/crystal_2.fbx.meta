@@ -3,7 +3,12 @@ guid: 0d2ddb348f104294bbaaffa3b8f41c2b
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: crystal purp
+    second: {fileID: 2100000, guid: cd1c01ff66a3ffc4e85ec0f00cf99d62, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

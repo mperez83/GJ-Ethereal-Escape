@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class MatchHandler : MonoBehaviour
 {
@@ -24,7 +23,9 @@ public class MatchHandler : MonoBehaviour
     void Start()
     {
         instance = this;
-        
+
+        manaImage.fillAmount = 1 - ((winAmount - manaGooCollected) / (float)winAmount);
+
         for (int i = 0; i < amountOfCrystalsToSpawn; i++)
         {
             Vector3 rayPos = new Vector3(Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x), 0, Random.Range(spawnArea.bounds.min.z, spawnArea.bounds.max.z));
@@ -39,7 +40,11 @@ public class MatchHandler : MonoBehaviour
 
     void Update()
     {
-        manaImage.fillAmount = 1 - ((winAmount - manaGooCollected) / (float)winAmount);
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 1;
+            GameManager.instance.ChangeScene("MainMenu");
+        }
     }
 
 
@@ -47,9 +52,11 @@ public class MatchHandler : MonoBehaviour
     public void CollectManaGoo(int amount)
     {
         manaGooCollected += amount;
+        manaImage.fillAmount = 1 - ((winAmount - manaGooCollected) / (float)winAmount);
+
         if (manaGooCollected >= winAmount)
         {
-            SceneManager.LoadScene("Win");
+            GameManager.instance.ChangeScene("Credits");
         }
     }
 }

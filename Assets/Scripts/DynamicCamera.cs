@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DynamicCamera : MonoBehaviour
 {
-    public List<Transform> targets;
+    public Transform playerOne;
+    public Transform playerTwo;
     public Vector3 offset;
     public float smoothTime;
     public float minZoom = 40f;
@@ -23,11 +24,11 @@ public class DynamicCamera : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 direction = targets[0].position - targets[1].position;
+        Vector3 direction = playerOne.position - playerTwo.position;
         Vector3 offset = direction.normalized * (direction.magnitude / 2f);
 
-        Vector3 newPos = targets[0].position - offset;
-        newPos.y = 6;
+        Vector3 newPos = playerOne.position - offset;
+        newPos.y = 7;
 
         newPos += (5 * Vector3.Cross(direction, Vector3.up).normalized) + (0.5f * Vector3.Cross(direction, Vector3.up));
         transform.LookAt(GetCenterPoint());
@@ -39,17 +40,9 @@ public class DynamicCamera : MonoBehaviour
 
     Vector3 GetCenterPoint()
     {
-        if (targets.Count == 1)
-        {
-            return targets[0].position;
-        }
-
-        Bounds bounds = new Bounds(targets[0].position, Vector3.zero);
-        foreach (Transform trans in targets)
-        {
-            bounds.Encapsulate(trans.position);
-        }
-
+        Bounds bounds = new Bounds(playerOne.position, Vector3.zero);
+        bounds.Encapsulate(playerOne.position);
+        bounds.Encapsulate(playerTwo.position);
         return bounds.center;
     }
 }

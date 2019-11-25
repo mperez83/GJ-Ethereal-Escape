@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerOne : MonoBehaviour
 {
@@ -26,6 +25,7 @@ public class PlayerOne : MonoBehaviour
     public Image shieldBarImage;
 
     public GameObject warriorObject;
+    public GameObject deadLadPrefab;
 
     Rigidbody rb;
     Camera sceneCamera;
@@ -94,8 +94,20 @@ public class PlayerOne : MonoBehaviour
 
         if (shieldPower <= 0)
         {
-            print("Spells cast: " + playerTwo.GetSpellsCast());
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameObject deadLad = Instantiate(deadLadPrefab, shieldObject.transform.position, Quaternion.identity);
+            float xForce = Random.Range(-20f, 20f);
+            float yForce = Random.Range(20f, 30f);
+            float zForce = Random.Range(-20f, 20f);
+            Vector3 force = new Vector3(xForce, yForce, zForce);
+            rb.AddForce(force, ForceMode.Impulse);
+            rb.AddTorque(force, ForceMode.Impulse);
+            deadLad.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
+            sceneCamera.GetComponent<DynamicCamera>().playerOne = deadLad.transform;
+            deadLad.LeanDelayedCall(5, () =>
+            {
+                GameManager.instance.ChangeScene("Game");
+            });
+            Destroy(gameObject);
         }
 
         //Warrior model stuff
