@@ -43,8 +43,6 @@ public class PlayerOne : MonoBehaviour
     void Update()
     {
         //Movement
-        //direction = new Vector2(Input.GetAxisRaw("P1_Horizontal"), Input.GetAxisRaw("P1_Vertical")).normalized;
-        
         if (Input.GetMouseButton(0))
         {
             Ray ray = sceneCamera.ScreenPointToRay(Input.mousePosition);
@@ -59,11 +57,6 @@ public class PlayerOne : MonoBehaviour
         }
 
         //Dash
-        /*if (Input.GetButtonDown("P1_Action"))
-        {
-            Vector3 dashForce = new Vector3(rb.velocity.x, 0, rb.velocity.z) * 3;
-            rb.AddForce(dashForce, ForceMode.Impulse);
-        }*/
         dashCooldownTimer -= Time.deltaTime;
         if (dashCooldownTimer < 0) dashCooldownTimer = 0;
         if (Input.GetMouseButtonDown(1) && dashCooldownTimer <= 0)
