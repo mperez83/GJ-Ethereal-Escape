@@ -1183,7 +1183,7 @@ MonoBehaviour:
   playerOne: {fileID: 1299812067}
   playerTwo: {fileID: 1093366527}
   offset: {x: 0, y: 8, z: -8}
-  smoothTime: 0.2
+  smoothTime: 2
   minZoom: 90
   maxZoom: 50
   zoomLimiter: 10

@@ -78,7 +78,7 @@ public class PlayerOne : MonoBehaviour
 
         //Shield stuff
         shieldPower -= Time.deltaTime * shieldDegredationRate;
-        shieldDegredationRate += 0.04f * Time.deltaTime;
+        shieldDegredationRate += 0.05f * Time.deltaTime;
 
         Vector3 shieldSize = Vector3.one * (2 * (2 - ((shieldMaxPower - shieldPower) / shieldMaxPower)));
         shieldObject.transform.localScale = shieldSize;
