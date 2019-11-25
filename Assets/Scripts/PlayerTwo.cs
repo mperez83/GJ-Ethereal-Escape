@@ -22,6 +22,8 @@ public class PlayerTwo : MonoBehaviour
     public GameObject bootObject;
     Vector2 inputAxis;
     public float acceleration;
+    Vector3 faceDir;
+    Vector3 curVel;
 
     Rigidbody rb;
     Camera sceneCamera;
@@ -92,6 +94,13 @@ public class PlayerTwo : MonoBehaviour
 
                 Vector3 direction = (camF * inputAxis.y) + (camR * inputAxis.x);
                 rb.AddForce(direction * acceleration * Time.deltaTime);
+
+                if (inputAxis != Vector2.zero)
+                {
+                    faceDir = Vector3.SmoothDamp(faceDir, new Vector3(direction.x, 0, direction.z).normalized, ref curVel, 0.2f);
+                    Quaternion rotation = Quaternion.LookRotation(faceDir, Vector3.up);
+                    transform.rotation = rotation;
+                }
                 break;
         }
     }

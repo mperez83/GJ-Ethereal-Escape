@@ -27,7 +27,7 @@ public class DynamicCamera : MonoBehaviour
         Vector3 offset = direction.normalized * (direction.magnitude / 2f);
 
         Vector3 newPos = targets[0].position - offset;
-        newPos.y = 8;
+        newPos.y = 6;
 
         newPos += (5 * Vector3.Cross(direction, Vector3.up).normalized) + (0.5f * Vector3.Cross(direction, Vector3.up));
         transform.LookAt(GetCenterPoint());
